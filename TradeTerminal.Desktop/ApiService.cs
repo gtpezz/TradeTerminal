@@ -62,14 +62,16 @@ public class ApiService
     public async Task<JsonElement> GetOrderByIdAsync(int id)
     {
         var response = await _http.GetAsync($"{_baseUrl}/api/orders/{id}");
-        if (!response.IsSuccessStatusCode) return default;
+        if (!response.IsSuccessStatusCode) 
+            return default;
         return JsonSerializer.Deserialize<JsonElement>(await response.Content.ReadAsStringAsync());
     }
 
     public async Task<JsonElement> GetOrderByNumberAsync(int orderNumber)
     {
         var response = await _http.GetAsync($"{_baseUrl}/api/orders/number/{orderNumber}");
-        if (!response.IsSuccessStatusCode) return default;
+        if (!response.IsSuccessStatusCode) 
+            return default;
         return JsonSerializer.Deserialize<JsonElement>(await response.Content.ReadAsStringAsync());
     }
 
@@ -126,7 +128,8 @@ public class ApiService
     {
         var content = new StringContent(JsonSerializer.Serialize(new { login, password }), Encoding.UTF8, "application/json");
         var response = await _http.PostAsync($"{_baseUrl}/api/auth/login", content);
-        if (!response.IsSuccessStatusCode) return default;
+        if (!response.IsSuccessStatusCode) 
+            return default;
         return JsonSerializer.Deserialize<JsonElement>(await response.Content.ReadAsStringAsync());
     }
 
