@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Data;
 using TradeTerminal.Domain.Models;
 
 namespace TradeTerminal.DataAccess;
