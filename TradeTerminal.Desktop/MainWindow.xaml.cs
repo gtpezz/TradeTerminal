@@ -136,17 +136,17 @@ namespace TradeTerminal.Desktop
 
             if (settings.IsAuthenticated)
             {
-                lblUser.Text = $"\uD83D\uDC64 {settings.CurrentUserFullName}";
-                btnLogin.Content = "Выйти";
+                userLabel.Text = $"\uD83D\uDC64 {settings.CurrentUserFullName}";
+                loginButton.Content = "Выйти";
                 var role = settings.CurrentUserRole;
-                btnManageOrders.Visibility = (role == "Администратор" || role == "Менеджер")
+                manageOrdersButton.Visibility = (role == "Администратор" || role == "Менеджер")
                     ? Visibility.Visible : Visibility.Collapsed;
             }
             else
             {
-                lblUser.Text = "\uD83D\uDC64 Гость";
-                btnLogin.Content = "Войти";
-                btnManageOrders.Visibility = Visibility.Collapsed;
+                userLabel.Text = "\uD83D\uDC64 Гость";
+                loginButton.Content = "Войти";
+                manageOrdersButton.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -263,27 +263,27 @@ namespace TradeTerminal.Desktop
 
         private async void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn) btn.IsEnabled = false;
+            if (sender is Button button) button.IsEnabled = false;
             await LoadDataAsync();
-            if (sender is Button btnEnabled) btnEnabled.IsEnabled = true;
+            if (sender is Button enabledButton) enabledButton.IsEnabled = true;
         }
 
         private void UpdateSortButtons()
         {
-            buttonSortName.Content = $"По имени {(_sortBy == "name" ? (_asc ? arrowUp : arrowDown) : "")}";
-            btnSortPrice.Content = $"По цене {(_sortBy == "price" ? (_asc ? arrowUp : arrowDown) : "")}";
+            sortNameButton.Content = $"По имени {(_sortBy == "name" ? (_asc ? arrowUp : arrowDown) : "")}";
+            sortPriceButton.Content = $"По цене {(_sortBy == "price" ? (_asc ? arrowUp : arrowDown) : "")}";
 
-            buttonSortName.Background = _sortBy == "name"
+            sortNameButton.Background = _sortBy == "name"
                 ? (System.Windows.Media.Brush)FindResource("AccentBrush")
                 : System.Windows.Media.Brushes.LightGray;
-            buttonSortName.Foreground = _sortBy == "name"
+            sortNameButton.Foreground = _sortBy == "name"
                 ? System.Windows.Media.Brushes.White
                 : System.Windows.Media.Brushes.Black;
 
-            btnSortPrice.Background = _sortBy == "price"
+            sortPriceButton.Background = _sortBy == "price"
                 ? (System.Windows.Media.Brush)FindResource("AccentBrush")
                 : System.Windows.Media.Brushes.LightGray;
-            btnSortPrice.Foreground = _sortBy == "price"
+            sortPriceButton.Foreground = _sortBy == "price"
                 ? System.Windows.Media.Brushes.White
                 : System.Windows.Media.Brushes.Black;
         }
