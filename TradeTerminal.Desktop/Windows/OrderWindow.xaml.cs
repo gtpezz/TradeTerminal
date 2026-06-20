@@ -41,10 +41,10 @@ namespace TradeTerminal.Desktop.Windows
                 var userFullName = _orderData.TryGetProperty("userFullName", out var userProp)
                     ? userProp.GetString()
                     : null;
-                lblClient.Text = string.IsNullOrEmpty(userFullName) ? "Гость" : userFullName;
+                clientLabel.Text = string.IsNullOrEmpty(userFullName) ? "Гость" : userFullName;
 
                 var pickupCode = _orderData.GetProperty("pickupCode").GetString();
-                lblPickupCode.Text = pickupCode;
+                pickupCodeLabel.Text = pickupCode;
 
                 _items.Clear();
                 decimal total = 0;
@@ -71,8 +71,8 @@ namespace TradeTerminal.Desktop.Windows
                     }
                 }
 
-                lvItems.ItemsSource = _items;
-                lblTotal.Text = total.ToString("C");
+                itemsListView.ItemsSource = _items;
+                totalLabel.Text = total.ToString("C");
             }
             catch (Exception ex)
             {
@@ -100,20 +100,20 @@ namespace TradeTerminal.Desktop.Windows
                     ticketContent.AppendLine("=".PadRight(50, '='));
                     ticketContent.AppendLine();
                     ticketContent.AppendLine($"Дата заказа: {DateTime.Now:dd.MM.yyyy HH:mm}");
-                    ticketContent.AppendLine($"Клиент: {lblClient.Text}");
-                    ticketContent.AppendLine($"Код получения: {lblPickupCode.Text}");
+                    ticketContent.AppendLine($"Клиент: {clientLabel.Text}");
+                    ticketContent.AppendLine($"Код получения: {pickupCodeLabel.Text}");
                     ticketContent.AppendLine();
                     ticketContent.AppendLine("-".PadRight(50, '-'));
                     ticketContent.AppendLine("Товары:");
 
-                    foreach (OrderItem item in lvItems.Items)
+                    foreach (OrderItem item in itemsListView.Items)
                     {
                         ticketContent.AppendLine($"  {item.ProductName}");
                         ticketContent.AppendLine($"    {item.Quantity} шт. x {item.Price:C} = {item.Total:C}");
                     }
 
                     ticketContent.AppendLine("-".PadRight(50, '-'));
-                    ticketContent.AppendLine($"ИТОГО: {lblTotal.Text}");
+                    ticketContent.AppendLine($"ИТОГО: {totalLabel.Text}");
                     ticketContent.AppendLine("=".PadRight(50, '='));
                     ticketContent.AppendLine();
                     ticketContent.AppendLine("Спасибо за покупку!");
@@ -143,7 +143,7 @@ namespace TradeTerminal.Desktop.Windows
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show($"Заказ №{orderNumberLabel.Text} успешно оформлен!\nКод получения: {lblPickupCode.Text}",
+                    MessageBox.Show($"Заказ №{orderNumberLabel.Text} успешно оформлен!\nКод получения: {pickupCodeLabel.Text}",
                         "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     _order.ClearOrder();

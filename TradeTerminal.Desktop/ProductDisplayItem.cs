@@ -12,5 +12,7 @@
         public decimal Discount { get; set; }
         public string Article { get; set; }
         public string Photo { get; set; }
+
+        public bool HasDiscount => Discount > 0;
     }
 }

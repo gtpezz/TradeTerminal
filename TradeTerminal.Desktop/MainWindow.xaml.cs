@@ -49,13 +49,13 @@ namespace TradeTerminal.Desktop
                 foreach (var m in _manufacturers)
                     cmbManufacturer.Items.Add(m.GetProperty("name").GetString());
 
-                cmbCategory.Items.Clear();
-                cmbCategory.Items.Add("Все категории");
+                categoryComboBox.Items.Clear();
+                categoryComboBox.Items.Add("Все категории");
                 foreach (var c in _categories)
-                    cmbCategory.Items.Add(c.GetProperty("name").GetString());
+                    categoryComboBox.Items.Add(c.GetProperty("name").GetString());
 
                 cmbManufacturer.SelectedIndex = 0;
-                cmbCategory.SelectedIndex = 0;
+                categoryComboBox.SelectedIndex = 0;
 
                 ApplyFilters();
             }
@@ -80,21 +80,21 @@ namespace TradeTerminal.Desktop
                 list = list.Where(p => p.GetProperty("manufacturerName").GetString() == name).ToList();
             }
 
-            if (cmbCategory.SelectedIndex > 0)
+            if (categoryComboBox.SelectedIndex > 0)
             {
-                var name = cmbCategory.SelectedItem?.ToString();
+                var name = categoryComboBox.SelectedItem?.ToString();
                 list = list.Where(p => p.GetProperty("categoryName").GetString() == name).ToList();
             }
 
-            if (decimal.TryParse(txtMinPrice.Text, out var min))
+            if (decimal.TryParse(minPriceTextBox.Text, out var min))
                 list = list.Where(p => p.GetProperty("price").GetDecimal() >= min).ToList();
 
-            if (decimal.TryParse(txtMaxPrice.Text, out var max))
+            if (decimal.TryParse(maxPriceTextBox.Text, out var max))
                 list = list.Where(p => p.GetProperty("price").GetDecimal() <= max).ToList();
 
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            if (!string.IsNullOrWhiteSpace(searchTextBox.Text))
             {
-                var term = txtSearch.Text.ToLower();
+                var term = searchTextBox.Text.ToLower();
                 list = list.Where(p => p.GetProperty("name").GetString()?.ToLower().Contains(term) == true).ToList();
             }
 
@@ -118,12 +118,12 @@ namespace TradeTerminal.Desktop
                     Price = item.GetProperty("price").GetDecimal(),
                     Discount = item.GetProperty("discount").GetDecimal(),
                     Article = item.GetProperty("article").GetString()!,
-                    Photo = photo
+                    Photo = photo!
                 });
             }
 
             itemsControl.ItemsSource = displayList;
-            lblCount.Text = $"{list.Count} из {_allProducts.GetArrayLength()}";
+            countLabel.Text = $"{list.Count} из {_allProducts.GetArrayLength()}";
         }
 
         #endregion

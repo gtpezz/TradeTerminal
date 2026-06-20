@@ -60,7 +60,7 @@
             <WrapPanel VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="0,2,10,2">
                     <TextBlock Text="Поиск" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                    <TextBox x:Name="txtSearch" Width="140" Height="30" TextChanged="FilterTextBox_TextChanged" 
+                    <TextBox x:Name="searchTextBox" Width="140" Height="30" TextChanged="FilterTextBox_TextChanged" 
                              ToolTip="Введите название" VerticalContentAlignment="Center" MaxLength="50"/>
                 </StackPanel>
 
@@ -72,16 +72,16 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0,2,10,2">
                     <TextBlock Text="Категория:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                    <ComboBox x:Name="cmbCategory" Width="130" Height="30" 
+                    <ComboBox x:Name="categoryComboBox" Width="130" Height="30" 
                               SelectionChanged="FilterComboBox_SelectionChanged" VerticalContentAlignment="Center"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,2,15,2">
                     <TextBlock Text="Цена:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                    <TextBox x:Name="txtMinPrice" Width="55" Height="30" TextChanged="FilterTextBox_TextChanged"
+                    <TextBox x:Name="minPriceTextBox" Width="55" Height="30" TextChanged="FilterTextBox_TextChanged"
                              ToolTip="Мин. цена" VerticalContentAlignment="Center" TextAlignment="Center" MaxLength="20"/>
                     <TextBlock Text="-" VerticalAlignment="Center" FontWeight="Bold" Margin="4,0"/>
-                    <TextBox x:Name="txtMaxPrice" Width="55" Height="30" TextChanged="FilterTextBox_TextChanged"
+                    <TextBox x:Name="maxPriceTextBox" Width="55" Height="30" TextChanged="FilterTextBox_TextChanged"
                              ToolTip="Макс. цена" VerticalContentAlignment="Center" TextAlignment="Center" MaxLength="20"/>
                 </StackPanel>
 
@@ -132,9 +132,9 @@
 
                                 <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,5,0,0">
                                     <TextBlock Text="{Binding Price, StringFormat={}{0:F2} ₽}" FontWeight="Bold" FontSize="14"/>
-                                    <TextBlock Text="{Binding Discount, StringFormat= (скидка {0}%)}" 
-                                               Foreground="Red" FontSize="11" Margin="5,0,0,0"
-                                               Visibility="{Binding Discount, Converter={StaticResource BoolToVis}}"/>
+                                    <TextBlock Text="{Binding Discount, StringFormat= (скидка {0:0.##}%)}" 
+           Foreground="Red" FontSize="11" Margin="5,0,0,0"
+           Visibility="{Binding HasDiscount, Converter={StaticResource BoolToVis}}"/>
                                 </StackPanel>
 
                                 <Button Grid.Row="4" Content="Заказать" 
@@ -154,7 +154,7 @@
 
         <Border Grid.Row="3" Background="#F8F9FA" Padding="15,0" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0">
             <Grid>
-                <TextBlock x:Name="lblCount" Text="0 из 0" FontSize="13" Foreground="#555" VerticalAlignment="Center"/>
+                <TextBlock x:Name="countLabel" Text="0 из 0" FontSize="13" Foreground="#555" VerticalAlignment="Center"/>
             </Grid>
         </Border>
     </Grid>

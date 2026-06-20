@@ -27,17 +27,17 @@
         <!-- Информация о клиенте -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,5">
             <TextBlock Text="Клиент: " FontSize="14"/>
-            <TextBlock x:Name="lblClient" FontSize="14" FontWeight="Bold"/>
+            <TextBlock x:Name="clientLabel" FontSize="14" FontWeight="Bold"/>
         </StackPanel>
 
         <!-- Код получения -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,15">
             <TextBlock Text="Код получения: " FontSize="14"/>
-            <TextBlock x:Name="lblPickupCode" FontSize="14" FontWeight="Bold" Foreground="{StaticResource AccentBrush}"/>
+            <TextBlock x:Name="pickupCodeLabel" FontSize="14" FontWeight="Bold" Foreground="{StaticResource AccentBrush}"/>
         </StackPanel>
 
         <!-- Список товаров -->
-        <ListView x:Name="lvItems" Grid.Row="3" Margin="0,0,0,10">
+        <ListView x:Name="itemsListView" Grid.Row="3" Margin="0,0,0,10">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Товар" Width="250" DisplayMemberBinding="{Binding ProductName}"/>
@@ -59,7 +59,7 @@
         <!-- Итого -->
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,15">
             <TextBlock Text="Итого: " FontSize="18" FontWeight="Bold"/>
-            <TextBlock x:Name="lblTotal" FontSize="18" FontWeight="Bold" Foreground="{StaticResource AccentBrush}"/>
+            <TextBlock x:Name="totalLabel" FontSize="18" FontWeight="Bold" Foreground="{StaticResource AccentBrush}"/>
         </StackPanel>
 
         <!-- Кнопки -->
