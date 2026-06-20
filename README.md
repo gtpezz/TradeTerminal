@@ -44,10 +44,10 @@
 ---
 
 ## Руководство по стилю
-Основной цвет #DAA520 (золотой) 
-Акцентный цвет  #B8860B (темно-золотой) 
-Цвет фона #FFFFFF (белый) 
-Шрифт Calibri
+- Основной цвет #DAA520 (золотой) 
+- Акцентный цвет  #B8860B (темно-золотой) 
+- Цвет фона #FFFFFF (белый) 
+- Шрифт Calibri
 
 ## Установка и запуск
 
@@ -61,32 +61,42 @@
 ```bash
 git clone https://github.com/your-username/TradeTerminal.git
 cd TradeTerminal
+```
 
-### Выполните скрипт dbscript/db.sql в SQL Server Management Studio.
+### 2. Выполните скрипт dbscript/db.sql в SQL Server Management Studio.
 Строка подключения (в appsettings.json):
 json
+```
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=TradeTerminal;Trusted_Connection=True;TrustServerCertificate=True"
   }
 }
+```
 
 ### Запуск Web API
+
+```
 cd TradeTerminal.WebApi
 dotnet restore
 dotnet build
 dotnet run --launch-profile https
-API будет доступно по адресу: https://localhost:7000
+```
+### API будет доступно по адресу: https://localhost:7000
 
 ### Запуск Desktop приложения
+```
 cd TradeTerminal.Desktop
 dotnet run
+```
 
 ### Запуск Web приложения
+```
 cd TradeTerminal.Web
 dotnet restore
 dotnet build
 dotnet run
+```
 
 ## Разработчики
 - Трапезников В.
