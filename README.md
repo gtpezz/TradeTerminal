@@ -39,7 +39,6 @@
 
 ### Web
 - **ASP.NET Core Razor Pages** — веб-интерфейс
-- **HTML5 + CSS3** — верстка
 
 ---
 
