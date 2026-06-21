@@ -8,19 +8,16 @@ public class BooleanToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        // Если value - bool
         if (value is bool b)
         {
             return b ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        // Если value - число (скидка)
         if (value is decimal discount)
         {
             return discount > 0 ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        // Если value - целое число
         if (value is int intValue)
         {
             return intValue > 0 ? Visibility.Visible : Visibility.Collapsed;
