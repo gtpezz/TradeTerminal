@@ -300,7 +300,6 @@ public class OrderService
 
         await _context.SaveChangesAsync();
 
-        // Обновляем общую сумму заказа
         await UpdateOrderTotalAsync(orderId);
     }
 
