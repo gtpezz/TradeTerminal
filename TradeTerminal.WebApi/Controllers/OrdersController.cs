@@ -84,7 +84,6 @@ public class OrdersController(OrderService service) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateOrderRequest request)
     {
-        // Генерируем код получения (3 цифры)
         var random = new Random();
         var pickupCode = random.Next(100, 999).ToString();
 
